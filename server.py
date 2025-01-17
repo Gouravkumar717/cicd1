@@ -1,20 +1,9 @@
-import tornado.ioloop
-import tornado.web
+from flask import Flask
+app = Flask(__name__)
 
+@app.route('/')
+def hello():
+    return "Hello, Project accompished ."
 
-class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write("Hello, world\n")
-        print(self.request)
-
-
-def make_app():
-    return tornado.web.Application([
-        (r"/", MainHandler),
-    ])
-
-
-if __name__ == "__main__":
-    app = make_app()
-    app.listen(8888)
-    tornado.ioloop.IOLoop.current().start()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8888)
